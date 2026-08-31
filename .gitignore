@@ -1,0 +1,19 @@
+# Entorno virtual
+.venv/
+env/
+venv/
+
+# Archivos compilados y cachés de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de prueba y métricas
+.pytest_cache/
+.coverage
+
+# Archivos de base de datos local y artefactos
+*.db
+*.sqlite3
+artifacts/*
+!artifacts/.gitkeep
