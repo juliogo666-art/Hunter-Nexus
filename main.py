@@ -10,3 +10,8 @@ gon.atacar(Killua)
 
 print(f"vida Killua tras golpe de Gon: {Killua.hp}")
 print(f"¿sigue vido killua? {Killua.esta_vivo()}")
+
+print(f"aura todal de gon {gon.aura}")
+gon.usar_hatsu(Killua)
+print (f"Vida de killua {Killua.hp}")
+print (f"Aura actual de gon {gon.aura}")
