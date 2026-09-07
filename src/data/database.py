@@ -1,7 +1,6 @@
 import psycopg
 
-# Usuario por defecto de PostgreSQL: postgres
-DSN = "postgresql://postgres:hunter_password@localhost:5432/hunter_nexus_db"
+DSN = "postgresql://hunter_admin:hunter_password@localhost:5433/hunter_nexus_db"
 
 def obtener_conexion():
     return psycopg.connect(DSN)

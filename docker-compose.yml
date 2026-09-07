@@ -4,10 +4,11 @@ services:
     container_name: hunter_postgres
     restart: always
     environment:
-      POSTGRES_DB: hunter_nexus_db
+      POSTGRES_USER: hunter_admin
       POSTGRES_PASSWORD: hunter_password
+      POSTGRES_DB: hunter_nexus_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
