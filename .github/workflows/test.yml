@@ -10,8 +10,24 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
 
+    # Configuración de la base de datos PostgreSQL como servicio
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: hunter_admin
+          POSTGRES_PASSWORD: hunter_password  # Ajusta la contraseña según tu DSN/entorno
+          POSTGRES_DB: hunter_nexus_db
+        ports:
+          - 5433:5432  # Mapea el puerto 5432 del contenedor al puerto 5433 del host
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
-    - name: Descargar codigo del repositorio
+    - name: Descargar código del repositorio
       uses: actions/checkout@v4
 
     - name: Configurar Python 3.13
@@ -28,5 +44,7 @@ jobs:
     - name: Ejecutar pruebas y verificar cobertura
       env:
         PYTHONPATH: .
+        # Puedes declarar variables de entorno adicionales si tu DSN las lee dinámicamente:
+        # DB_PASSWORD: postgres_password
       run: |
         python -m pytest -v --cov=src
