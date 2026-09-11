@@ -2,7 +2,8 @@ from src.data.repository import obtener_hunter_por_nombre, actualizar_hunter
 
 def calcular_poder_combate(hunter: dict) -> float:
     """Calcula el poder de combate basado en HP, Fuerza y Aura."""
-    multiplicador_nen = 1.2 if hunter["tipo_nen"] == "Intensificación" else 1.0
+    tipo_nen_normalizado = hunter["tipo_nen"].lower().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
+    multiplicador_nen = 1.2 if tipo_nen_normalizado == "intensificacion" else 1.0
     poder_base = (hunter["hp"] * 0.3) + (hunter["fuerza"] * 1.5) + (hunter["aura"] * 2.0)
     return round(poder_base * multiplicador_nen, 2)
 

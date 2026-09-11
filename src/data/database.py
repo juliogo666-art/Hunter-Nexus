@@ -1,6 +1,7 @@
 import psycopg
 
-DSN = "postgresql://hunter_admin:hunter_password@localhost:5433/hunter_nexus_db"
+#DSN = "postgresql://hunter_admin:hunter_password@localhost:5433/hunter_nexus_db"
+DSN = "postgresql://hunter_admin:hunter_password@127.0.0.1:5433/hunter_nexus_db?connect_timeout=5"
 
 def obtener_conexion():
     return psycopg.connect(DSN)

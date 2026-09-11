@@ -17,3 +17,11 @@ __pycache__/
 *.sqlite3
 artifacts/*
 !artifacts/.gitkeep
+
+# Cobertura de código y cachés de tests
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+coverage.xml
+*.lcov
