@@ -4,17 +4,17 @@ from src.data.database import obtener_conexion
 @pytest.fixture(scope="session", autouse=True)
 def crear_tablas_db():
     """
-    Fixture de sesión que crea las tablas necesarias en la base de datos
-    una sola vez antes de ejecutar la suite de pruebas.
+    Crea la tabla 'hunters' con la estructura exacta requerida por la API.
     """
     sql_crear_tabla = """
     CREATE TABLE IF NOT EXISTS hunters (
         id SERIAL PRIMARY KEY,
         nombre VARCHAR(100) NOT NULL UNIQUE,
+        tipo_nen VARCHAR(50) NOT NULL,
         nivel INT DEFAULT 1,
-        rango VARCHAR(50) DEFAULT 'E',
-        clase VARCHAR(50),
-        experiencia INT DEFAULT 0,
+        fuerza INT DEFAULT 10,
+        hp INT DEFAULT 100,
+        aura INT DEFAULT 10,
         creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """
@@ -26,8 +26,7 @@ def crear_tablas_db():
 @pytest.fixture(autouse=True)
 def limpiar_tabla_hunters(crear_tablas_db):
     """
-    Fixture de Pytest que se ejecuta automáticamente antes de cada test.
-    Limpia la tabla 'hunters' y reinicia los IDs autonuméricos.
+    Limpia la tabla 'hunters' e inicializa los IDs antes de cada test.
     """
     with obtener_conexion() as conn:
         with conn.cursor() as cursor:
